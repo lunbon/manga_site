@@ -1,0 +1,4 @@
+__pycache__/
+env/
+geckodriver.log
+.DS_Store
