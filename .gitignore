@@ -1,4 +1,7 @@
 __pycache__/
+.pytest_cache/
+app.db
 env/
 geckodriver.log
 .DS_Store
+config.py

@@ -8,8 +8,7 @@ class NewVisitorTest(unittest.TestCase):
 		self.browser.quit()
 	def test_can_open_site_and_find_titles(self):
 		self.browser.get('http://localhost:5000')
-		self.assertIn('manga-site', self.browser.title)
-		self.fail('Finish the test!')
+		self.assertIn('Манга сайт', self.browser.title)
 
 if __name__=='__main__':
 	unittest.main()

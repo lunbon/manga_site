@@ -1,5 +1,6 @@
-from app.home_page import home_page
+from . import home_page
+from flask import render_template
 
 @home_page.route('/')
-def home_page():
-	return "<html><head><title>manga-site</title></head></html>"
+def view_home_page():
+	return render_template('home_page/home_page.html')
