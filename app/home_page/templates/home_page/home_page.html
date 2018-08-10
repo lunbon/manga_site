@@ -6,6 +6,10 @@
 	<title>Манга сайт</title>
 </head>
 <body>
+	<form action="title/add_chapter", method="POST">
+		{{form.name(id="add_new_chapter")}}
+		{{form.hidden_tag()}}
+	</form>
 	{%for chapter in chapters%}
 	<h1>{{chapter.name}}</h1>
 	{%endfor%}
