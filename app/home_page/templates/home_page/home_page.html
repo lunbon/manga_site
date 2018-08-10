@@ -8,10 +8,13 @@
 <body>
 	<form action="title/add_chapter", method="POST">
 		{{form.name(id="add_new_chapter")}}
+		{{form.img(id="add_new_chapter_img")}}
+		{{form.submit}}
 		{{form.hidden_tag()}}
 	</form>
 	{%for chapter in chapters%}
 	<h1>{{chapter.name}}</h1>
+	<img src="{{chapter.img}}">
 	{%endfor%}
 
 </body>

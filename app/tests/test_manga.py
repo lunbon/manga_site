@@ -4,6 +4,7 @@ import tempfile
 import pytest
 
 from app import app 
+from app import db
 from app import init_db
 from app.title.models import Chapter
 from flask_sqlalchemy import SQLAlchemy
@@ -28,5 +29,9 @@ def test_home_page(client):
 	assert b'<!DOCTYPE html>' in rv.data
 
 def test_last_chapters_on_home_page(client):
+	chapter1=Chapter()
+	chapter2=Chapter()
+	db.session.add(chapter1,chapter2)
+	db.session.commit()
 	for chapter in Chapter.query.all():
-		assert bytes(chapter.name, encoding='utf-8') in client.get('/').data
+		assert bytes(str(chapter.name), encoding='utf-8') in client.get('/').data

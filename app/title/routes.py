@@ -8,7 +8,7 @@ from flask import redirect
 def add_chapter():
 	form = AddChapterForm()
 	if form.validate_on_submit():
-		new_chapter = Chapter(name=form.name.data, img=None)
+		new_chapter = Chapter(name=form.name.data, img=form.img.data)
 		db.session.add(new_chapter)
 		db.session.commit()
 	return redirect('/')
