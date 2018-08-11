@@ -13,6 +13,8 @@ def init_db():
 
 from app.home_page import home_page
 from app.title import title
+from app.user import user
 
 app.register_blueprint(home_page, url_prefix='/')
 app.register_blueprint(title,url_prefix='/title')
+app.register_blueprint(user,url_prefix='/user')
