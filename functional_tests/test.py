@@ -32,11 +32,13 @@ class NewVisitorTest(unittest.TestCase):
 		self.assertEqual(last_chapter.text, "Lily")
 		self.assertEqual(last_poster.get_attribute('src'), img_src)
 
-def register(name):
+def register(name, password):
 	browser = webdriver.Firefox()
 	browser.get(site_url+'user/register')
 	inputbox = browser.find_element_by_id('username')
 	inputbox.send_keys(name)
+	inputbox = browser.find_element_by_id('password')
+	inputbox.send_keys(password)
 	inputbox.send_keys(Keys.ENTER)
 	browser.quit()
 
@@ -47,7 +49,8 @@ class ProfileVisitor(unittest.TestCase):
 		self.browser.quit()
 
 	def test_visit_registred_pofile(self):
-		register('Saske')
+		register('Saske','password')
+		time.sleep(1)
 		self.browser.get(site_url+'user/Saske')
 		owner=self.browser.find_element_by_tag_name('h1')
 		self.assertEqual(owner.text,'Saske')
