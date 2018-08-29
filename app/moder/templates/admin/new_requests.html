@@ -1,0 +1,5 @@
+{%for title in titles%}
+	<ul>
+		<li><a href="{{url_for('titles.title_view',id=title.id)}}">{{title.name}}</a> - <a href="{{url_for('titles.set_active',id=title.id)}}">одобрить</a> - <a href="{{url_for('titles.delete_title',id=title.id)}}">удалить</a></li>
+	</ul>
+{%endfor%}

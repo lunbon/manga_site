@@ -10,27 +10,9 @@ class NewVisitorTest(unittest.TestCase):
 		self.browser = webdriver.Firefox()
 	def tearDown(self):
 		self.browser.quit()
-	def test_can_open_site_and_find_titles(self):
+	def test_can_open_site_and_find_title(self):
 		self.browser.get(site_url)
 		self.assertIn('Манга сайт', self.browser.title)
-	
-	def test_can_add_a_new_chapter(self):
-		self.browser.get(site_url)
-		
-		inputbox = self.browser.find_element_by_id('add_new_chapter')
-		inputbox.send_keys('Lily')
-		
-		inputbox = self.browser.find_element_by_id('add_new_chapter_img')
-		img_src='https://cdn.discordapp.com/attachments/461144491362091010/473745374025089024/img000003.png_res.jpg'
-		inputbox.send_keys(img_src)
-		inputbox.send_keys(Keys.ENTER)
-		
-		time.sleep(1)
-
-		last_chapter = self.browser.find_element_by_tag_name('h1')
-		last_poster = self.browser.find_element_by_tag_name('img')
-		self.assertEqual(last_chapter.text, "Lily")
-		self.assertEqual(last_poster.get_attribute('src'), img_src)
 
 def register(name, password):
 	browser = webdriver.Firefox()
@@ -59,6 +41,32 @@ class ProfileVisitor(unittest.TestCase):
 		self.browser.get(site_url+'user/@aske')
 		owner=self.browser.find_element_by_tag_name('h1')
 		self.assertEqual(owner.text,'Not Found')
+
+class ChapterLoader(unittest.TestCase):
+	def setUp(self):
+		self.browser = webdriver.Firefox()
+	def tearDown(self):
+		self.browser.quit()
+
+	def test_user_can_upload_a_chapter(self):
+		self.browser.get(site_url+'title/upload')
 		
+		inputbox = self.browser.find_element_by_id('add_new_chapter_name')
+		inputbox.send_keys('Lily')
+		
+		inputbox = self.browser.find_element_by_id('add_new_chapter_img')
+		img_src='https://cdn.discordapp.com/attachments/461144491362091010/473745374025089024/img000003.png_res.jpg'
+		inputbox.send_keys(img_src)
+		inputbox.send_keys(Keys.ENTER)
+		
+		time.sleep(1)
+
+		self.browser.get(site_url)
+		last_chapter = self.browser.find_element_by_tag_name('p')
+		last_poster = self.browser.find_element_by_tag_name('img')
+		self.assertEqual(last_chapter.text, "Lily")
+		self.assertEqual(last_poster.get_attribute('src'), img_src)
+
+
 if __name__=='__main__':
 	unittest.main()

@@ -1,0 +1,11 @@
+{%extends 'base.html'%}
+{%block content%}
+	<h3>Вам нужно загрузить главу, чтобы создать перевод</h3>
+	<form method="POST">
+		{{form.hidden_tag()}}
+		<p>{{form.name(size=32, placeholder="chapter's name", id='add_new_chapter_name')}}</p>
+		<p>{{form.img(size=32, placeholder="url for img", id='add_new_chapter_img')}}</p>
+		<p><input type="file" placeholder="drop ziped chapter here"></p>
+		<p>{{form.submit}}</p>
+	</form>
+{%endblock%}

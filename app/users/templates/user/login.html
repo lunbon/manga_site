@@ -1,0 +1,12 @@
+{%extends 'base.html'%}
+{%block css%}
+{%endblock%}
+{%block content%}
+	<form method="POST">
+		{{form.hidden_tag()}}
+		<p>{{form.username(size=32,placeholder="username")}}</p>
+		<p>{{form.password(size=32,placeholder="password")}}</p>
+		<p>{{form.submit(value="войти")}}</p>
+	</form>
+	<p>новенький? <a href="{{url_for('users.register')}}">зарегистрируйся!</a></p>
+{%endblock%}

@@ -1,0 +1,11 @@
+{%extends 'base.html'%}
+{%block css%}
+{%endblock%}
+{%block content%}
+	<form method="POST">
+		{{form.hidden_tag()}}
+		<p>{{form.username(id="username", placeholder="username",size=32)}}</p>
+		<p>{{form.password(id="password", placeholder="password",size=32)}}</p>
+		<p>{{form.submit(value="register")}}</p>
+	</form>
+{%endblock%}

@@ -1,0 +1,17 @@
+{%extends "base.html"%}
+{%block css%}
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='titles.css')}}">
+{%endblock%}
+	{%block content%}
+	<p>Не нашли любимого тайтла?<a href="{{url_for('titles.add_title')}}"> Добавьте!</a></p>
+		<div class="new_chapters">
+			{%for title in titles%}
+			<div class="new_chapter">
+				<a href="{{url_for('titles.title_view',id=title.id)}}">
+					<img class="poster" src="{{title.img}}">
+					<p>{{title.name}}</p>
+				</a>
+			</div>
+			{%endfor%}
+		</div>
+	{%endblock%}

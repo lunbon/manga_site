@@ -1,0 +1,31 @@
+*{
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+header{
+	display: flex;
+	justify-content: space-around;
+}
+.menu-item{
+	background-color: black;
+	color: white;
+	text-align: center;
+	width:20%;
+	padding-top: 0.5em;
+	height: 2.5em;
+	min-width: 100px;
+}
+.content{
+	width: 80%;
+	margin: 10%;
+	margin-top: 50px;
+	text-align: center; 
+}
+ul{
+
+}
+.poster img{
+	width: auto;
+	height:400px;
+}

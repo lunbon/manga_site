@@ -1,21 +1,13 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<meta charset="utf-8">
-	<link rel="stylesheet" type="text/css" href="style.css">
-	<title>Манга сайт</title>
-</head>
-<body>
-	<form action="title/add_chapter", method="POST">
-		{{form.name(id="add_new_chapter")}}
-		{{form.img(id="add_new_chapter_img")}}
-		{{form.submit}}
-		{{form.hidden_tag()}}
-	</form>
-	{%for chapter in chapters%}
-	<h1>{{chapter.name}}</h1>
-	<img src="{{chapter.img}}">
-	{%endfor%}
-
-</body>
-</html>
+{%extends "base.html"%}
+	{%block content%}
+		<div class="new_chapters">
+			{%for chapter in chapters%}
+			<div class="new_chapter">
+				<a href="#chapter">
+					<img class="poster" src="{{chapter.img}}">
+					<p>{{chapter.name}}</p>
+				</a>
+			</div>
+			{%endfor%}
+		</div>
+	{%endblock%}

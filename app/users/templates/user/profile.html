@@ -1,0 +1,22 @@
+{%extends 'base.html'%}
+{%block css%}
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='profile.css')}}">
+{%endblock%}
+{%block content%}
+		<div class="profile">
+			<div class="left">
+				<h2>Обо мне</h2>
+				<p>
+					{{user.about}}
+				</p>
+			</div>
+			<div class="right">
+				<h2>{{user.name}}</h2>
+				<img class="avatar" src="{{user.avatar}}">
+				<p><a href="#">Напиши мне</a></p>
+				{%if user == current_user%}
+				<p><a href="/user/edit_profile">редактировать профиль</a></p>
+				{%endif%}
+			</div>
+		</div>
+{%endblock%}

@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Edit Your Profile</title>
+</head>
+<body>
+	<form method="POST">
+		{{form.hidden_tag()}}
+		<p>{{form.about(placeholder="tell us about you")}}</p>
+		<p>{{form.avatar(placeholder="url for your avatar")}}</p>
+		<p>{{form.submit(value="сохранить")}}</p>
+	</form>
+</body>
+</html>

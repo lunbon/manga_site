@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<link rel="stylesheet" type="text/css" href="{{url_for('static', filename='style.css')}}">
+	<link href="https://fonts.googleapis.com/css?family=Caveat" rel="stylesheet"> 
+	{%block css%}{%endblock%}
+	<title>Манга сайт</title>
+</head>
+<body>
+	<header>
+		<a href="/" class="menu-item"><div>Главная</div></a>
+		<a href="{{url_for('titles.catalog')}}" class="menu-item"><div>Каталог</div></a>
+		{%if current_user.is_anonymous%}
+		<a href="{{url_for('users.login')}}" class="menu-item"><div>Войти</div></a>
+		{%else%}
+		<a href="{{url_for('users.profile',name=current_user.name)}}" class="menu-item"><div>Профиль</div></a>
+		{%endif%}
+	</header>
+	{%with messages = get_flashed_messages()%}
+		{%if messages%}
+			<ul class='flashes'>
+			{%for message in messages%}
+				<li>{{message}}</li>
+			{%endfor%}
+			</ul>
+		{%endif%}
+	{%endwith%}
+	<div class="content">
+		{%block content%}
+		{%endblock%}
+	</div>
+</body>
+</html>

@@ -1,6 +1,6 @@
 from flask import Blueprint
 
-user = Blueprint('user', __name__,
+users = Blueprint('users', __name__,
 				template_folder='templates')
 
 from . import routes, models

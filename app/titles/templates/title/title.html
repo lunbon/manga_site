@@ -1,0 +1,22 @@
+{%extends 'base.html'%}
+{%block css%}
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='title.css')}}">
+{%endblock%}
+	{%block content%}
+		<div class="title">
+			<div class="poster">
+				<img src="{{title.img}}">
+			</div>
+			<div>
+			<h2>{{title.name}}</h2>
+				<ul>
+					{%for trans,group in trans_and_groups%}
+					<a href="{{url_for('titles.translation_view', title_id=title.id,trans_id=trans.id)}}">
+						<li>перевод комманды - "{{group.name}}"</li>
+					</a>
+					{%endfor%}
+					<a href="{{url_for('titles.add_translation',title_id=title.id)}}">добавить свой перевод</a>
+				</ul>
+			</div>
+		</div>
+	{%endblock%}
