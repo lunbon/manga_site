@@ -24,7 +24,7 @@ class User(db.Model, UserMixin):
 	def check_password(self, password):
 		return check_password_hash(self.password_hash,password)
 	def __repr__(self):
-		return f"{self.name}"
+		return f"{self.name}({self.id})"
 
 class Role(db.Model):
 	id = db.Column(db.Integer, primary_key=True)

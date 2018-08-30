@@ -46,3 +46,7 @@ from app.users.models import Role, Group
 admin.add_view(ModelView(User,db.session))
 admin.add_view(ModelView(Role,db.session))
 admin.add_view(ModelView(Group,db.session))
+
+from app.moder.models import Changes
+
+admin.add_view(ModelView(Changes,db.session))

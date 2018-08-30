@@ -2,6 +2,7 @@ from . import titles
 from .forms import AddChapterForm, AddTitleForm
 from .models import Chapter,Title, Translation
 from app.users.models import User, Group, Role
+from app.moder.models import Changes
 from app import db
 from flask import redirect, render_template, url_for,flash
 from flask_login import login_required, current_user
@@ -66,17 +67,22 @@ def add_title():
 
 @titles.route('/title/<id>/set_active')
 def set_active(id):
-	title = Title.query.filter_by(id=id).first_or_404()
-	title.is_active=True
-	db.session.add(title)
-	db.session.commit()
-	return redirect(url_for('moder.view_new_requests'))
+	moder = Role.query.filter_by(name='moder').first_or_404()
+	if moder in current_user.roles:
+		title = Title.query.filter_by(id=id).first_or_404()
+		title.is_active=True
+		db.session.add(title)
+		changes = Changes(desc=f"{current_user} одобрил {title}", model='new_title')
+		db.session.add(changes)
+		db.session.commit()
+		return redirect(url_for('moder.add_title_requests'))
+	return redirect('/')
 
 @titles.route('title/delete/<id>')
 @login_required
 def delete_title(id):
-	admin = Role.query.filter_by(name='admin').first_or_404()
-	if admin in current_user.roles:
+	moder = Role.query.filter_by(name='moder').first_or_404()
+	if moder in current_user.roles:
 		title = Title.query.get(id)
 		db.session.delete(title)
 		db.session.commit()

@@ -20,7 +20,7 @@ def edit_profile():
 		current_user.about = form.about.data
 		current_user.avatar = form.avatar.data
 		db.session.commit()
-		return redirect(url_for('user.profile', name=current_user.name))
+		return redirect(url_for('users.profile', name=current_user.name))
 	form.about.data = current_user.about
 	form.avatar.data = current_user.avatar
 	return render_template('user/edit_profile.html',form=form)	

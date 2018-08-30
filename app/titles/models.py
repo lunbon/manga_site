@@ -35,4 +35,4 @@ class Title(db.Model):
 	description = db.Column(db.String(),default='')
 	is_active = db.Column(db.Boolean(),default=False)
 	def __repr__(self):
-		return f"'{self.name}'"
+		return f"'{self.name}'({self.id})"
